@@ -61,9 +61,9 @@
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="646" />
-    <option name="y" value="-17" />
+  <component name="ProjectFrameBounds">
+    <option name="x" value="530" />
+    <option name="y" value="249" />
     <option name="width" value="769" />
     <option name="height" value="1042" />
   </component>
@@ -181,22 +181,23 @@
       <workItem from="1593793094058" duration="10000" />
       <workItem from="1593793104717" duration="7755000" />
       <workItem from="1593849385755" duration="16847000" />
-      <workItem from="1593882865980" duration="103000" />
+      <workItem from="1593882865980" duration="486000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="30801000" />
+    <option name="totallyTimeSpent" value="31184000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <frame x="530" y="249" width="769" height="1042" extended-state="0" />
+    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.15724947" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.41607898" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32936078" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.3347779" />
+      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.339934" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />

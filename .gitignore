@@ -1,1 +1,3 @@
 webService/
+__pycache__/
+.idea/
