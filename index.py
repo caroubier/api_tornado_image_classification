@@ -46,16 +46,35 @@ class IndexHandler(tornado.web.RequestHandler):
         self.render('index.html')
 
 
-if __name__ == "__main__":
+class DatasetCompletionHandler(tornado.web.RequestHandler):
+    pass
 
+
+if __name__ == "__main__":
     ROOT_PATH = os.getcwd()
-    model_path = ROOT_PATH+"\\models\\"
+    IMAGE_PATH = "image"
+    NEW_SAMPLES_DATASET = "new_sample_dataset"
+    MODEL_FOLDER = "models"
+
+    if not os.path.exists(IMAGE_PATH):
+        os.makedirs(IMAGE_PATH)
+
+    if not os.path.exists(NEW_SAMPLES_DATASET):
+        os.makedirs(NEW_SAMPLES_DATASET)
+
+    for i in range(5):
+        a = i + 1
+        a = str(a)
+        if not os.path.exists((os.path.join(NEW_SAMPLES_DATASET, a))):
+            os.mkdir(os.path.join(NEW_SAMPLES_DATASET, a))
+
+    model_path = os.path.join(ROOT_PATH,MODEL_FOLDER)
     model_name = "best_CNN_Conv32_MaxPool2_Conv64_MaxPool2_Conv32_MaxPool2_Dense64relu_Dropout05_Dense32Relu_Dropout05_Dense6Relu.h5"
-    model = load_model(model_path+model_name)
+    model = load_model(os.path.join(model_path, model_name))
 
     app = tornado.web.Application([
         (r"/image", ImgClassifierHandler),
-        # (r"/image", ImgClassifierHandler),
+        (r"/new_sample_dataset", DatasetCompletionHandler),
         (r"/", IndexHandler)
     ])
     server = tornado.httpserver.HTTPServer(app, max_buffer_size=200000)  # 2Mo
