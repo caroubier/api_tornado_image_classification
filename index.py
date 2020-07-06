@@ -58,7 +58,7 @@ if __name__ == "__main__":
         # (r"/image", ImgClassifierHandler),
         (r"/", IndexHandler)
     ])
-    server = tornado.httpserver.HTTPServer(app, max_buffer_size=200000)  # 10G
-    server.listen(8888)
-    print("listening on port 8888")
+    server = tornado.httpserver.HTTPServer(app, max_buffer_size=200000)  # 2Mo
+    server.listen(5050)
+    print("listening on port 5050")
     tornado.ioloop.IOLoop.current().start()
