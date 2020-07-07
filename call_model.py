@@ -67,7 +67,6 @@ def model_predict(model, image):
         'metal': 5,
         'trash': 6
     }
-    print("je suis juste avant la prediction")
     p = model.predict(image[np.newaxis, ...])
     model_val = [np.argmax(p[0], axis=-1)]
     print(f"Class : {[np.argmax(p[0], axis=-1)]}")
@@ -80,7 +79,7 @@ def model_predict(model, image):
                 return f"{key} : {np.max(p[0], axis=-1)}"
     except Exception as e:
         print(e)
-        return ('Error on image processiong')
+        return ('Error on image processing')
 
 
 if __name__ == "__main__":
