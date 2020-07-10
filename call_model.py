@@ -30,6 +30,10 @@ def processing(input_path: str,
     # image = cv2.imread(input_path, cv2.IMREAD_UNCHANGED)
     image = np.array(input_path)
 
+    if image.shape[2] != 3:
+        image = np.delete(image, 3, 2)
+
+
     if croping:
         croped_image = image[0:int(image.shape[1] * 0.9), 0:]
     else:
@@ -60,12 +64,11 @@ def old_processing(img_path):
 
 def model_predict(model, image):
     class_val = {
-        'glass': 1,
-        'paper': 2,
-        'cardboard': 3,
-        'plastic': 4,
+        'verre': 1,
+        'papier': 2,
+        'carton': 3,
+        'plastique': 4,
         'metal': 5,
-        'trash': 6
     }
     p = model.predict(image[np.newaxis, ...])
     model_val = [np.argmax(p[0], axis=-1)]
