@@ -59,6 +59,7 @@ def old_processing(img_path):
     img = img_path.resize((300,300),0,None)
     img = image.img_to_array(img, dtype=np.uint8)
     img = np.array(img) / 255
+
     return img
 
 

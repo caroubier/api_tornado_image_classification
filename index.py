@@ -49,15 +49,19 @@ class ImgClassifierHandler(tornado.web.RequestHandler):
                 processed_img = processing(img)
         except Exception as e:
             print(e)
-            self.write(f"unable to process file !")
+            self.write(f"unable to process your file !")
             self.finish()
 
         try:
             result = model_predict(model, processed_img)
-            self.write(f"{result}")
+            print(result)
+            if result:
+                self.write(f"{result}")
+            else:
+                self.write("Model unable to process file !")
         except Exception as e:
             print(e)
-            self.write(f"impossible put file in model !")
+            self.write(f"impossible to put file in model !")
             self.finish()
 
 
@@ -127,12 +131,16 @@ class VsdHandler(tornado.web.RequestHandler):
 
 
 if __name__ == "__main__":
-    CHOSE_PROCESSING = sys.argv[1] # old : old_processing ; new : new_processing
-    model_name = sys.argv[2] # model name ; has to be stored in output-training/modeles/
+    # PORT = 5050
     # CHOSE_PROCESSING = "old"
-    # ex de commande
-    #  python index.py "old" "best_CNN_Conv32_MaxPool2_Conv64_MaxPool2_Conv32_MaxPool2_Dense64relu_Dropout05_Dense32Relu_Dropout05_Dense6Relu.h5"
     # model_name = "best_CNN_Conv32_MaxPool2_Conv64_MaxPool2_Conv32_MaxPool2_Dense64relu_Dropout05_Dense32Relu_Dropout05_Dense6Relu.h5"
+    PORT = int(sys.argv[1])
+    CHOSE_PROCESSING = sys.argv[2] # old : old_processing ; new : new_processing
+    model_name = sys.argv[3] # model name ; has to be stored in output-training/modeles/
+
+    # ex de commande
+    #  python index.py 5050 "old" "best_CNN_Conv32_MaxPool2_Conv64_MaxPool2_Conv32_MaxPool2_Dense64relu_Dropout05_Dense32Relu_Dropout05_Dense6Relu.h5"
+
     ROOT_PATH = os.getcwd()
     PARENT_PATH = dirname(os.getcwd())
     SAMPLES_DATASET = "dataset-trashnet"
@@ -170,8 +178,8 @@ if __name__ == "__main__":
         (r"/", IndexHandler),
         (r"/(.*)", tornado.web.StaticFileHandler, {'path': './files', 'default_filename': 'index.html'}),
     ])
-    server = tornado.httpserver.HTTPServer(app, max_buffer_size=200000)  # 2Mo
-    server.listen(5050)
-    print("listening on port 5050")
+    server = tornado.httpserver.HTTPServer(app, max_buffer_size=500000)  # 500Ko
+    server.listen(PORT)
+    print(f"listening on port {PORT}")
     tornado.ioloop.IOLoop.current().start()
 
